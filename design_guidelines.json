@@ -1,0 +1,170 @@
+{
+  "app_name": "DERBY ARENA",
+  "personality": "7 Dark-First Utility DARK with Brutalist Military structure",
+  "personality_one_liner": "A heavy, dirty, post-apocalyptic cinematic HUD where survival metrics dominate and every UI element feels like bolted-on industrial military hardware.",
+  "color": {
+    "surface": "#121212",
+    "onSurface": "#F5F5F5",
+    "surfaceSecondary": "#1E1E1E",
+    "onSurfaceSecondary": "#E0E0E0",
+    "surfaceTertiary": "#292929",
+    "onSurfaceTertiary": "#D0D0D0",
+    "surfaceInverse": "#E0E0E0",
+    "onSurfaceInverse": "#121212",
+    "brand": "#D84315",
+    "onBrand": "#FFFFFF",
+    "brandPrimary": "#D84315",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#8D6E63",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#FF8F00",
+    "onBrandTertiary": "#121212",
+    "success": "#4CAF50",
+    "onSuccess": "#000000",
+    "warning": "#FFB300",
+    "onWarning": "#000000",
+    "error": "#D32F2F",
+    "onError": "#FFFFFF",
+    "info": "#607D8B",
+    "onInfo": "#FFFFFF",
+    "border": "#333333",
+    "borderStrong": "#555555",
+    "divider": "#2A2A2A",
+    "muted": "#888888"
+  },
+  "typography": {
+    "displayFontFamily": "Barlow Condensed",
+    "textFontFamily": "Rajdhani",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24,
+      "3xl": 32,
+      "4xl": 48
+    }
+  },
+  "spacing": {
+    "rule": "Generous safe areas for landscape orientation. HUD elements tightly hug the safe area boundaries. Keep center screen clear for 3D action.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 0,
+    "md": 2,
+    "lg": 4,
+    "pill": 999
+  },
+  "shadow_tier": "0",
+  "navigation": "stack_only",
+  "icon_set": "MaterialCommunityIcons",
+  "glassmorphism": {
+    "enabled": "false",
+    "do's": ["Use simple translucent black overlays (e.g., rgba(0,0,0,0.6)) for menus so the 3D scene remains visible behind the UI."],
+    "dont's": ["Do not use blur/glass effects as they cost heavy GPU performance, which is better reserved for the Three.js 3D arena rendering."]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "solid surfaceSecondary",
+      "android": "solid surfaceSecondary",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Main Menu",
+      "purpose": "Entry point for the game featuring a cinematic 3D backdrop of the player's vehicle.",
+      "states": {
+        "loading": "Dark industrial spinner or loading bar",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Left-aligned brutalist vertical text menu (Play, Garage, Settings). Transparent background to showcase the underlying Three.js 3D vehicle scene. Display player Scrap currency in the top right."
+    },
+    {
+      "name": "Garage/Upgrades",
+      "purpose": "Vehicle customization and upgrades using Scrap currency.",
+      "states": {
+        "loading": "Skeleton loading for upgrade items",
+        "empty": "No upgrades available state",
+        "error": "Error fetching stats"
+      },
+      "layout": "Bottom-anchored horizontal scrolling cards or side panel for categories (Engine, Armor, Turret, Magnet). Center screen remains focused on 3D vehicle. Each upgrade card uses surfaceSecondary with sharp borders and displays Scrap cost."
+    },
+    {
+      "name": "Lobby/Arena Select",
+      "purpose": "Select difficulty level before entering the arena.",
+      "states": {
+        "loading": "Loading arena previews",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Grid of available arenas/difficulties. Cards have background images with dark gradient scrims."
+    },
+    {
+      "name": "Settings",
+      "purpose": "Configure game visual and control settings.",
+      "states": {
+        "loading": "N/A",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Overlay modal using surface with borderStrong. Segmented controls for Quality (LOW, MEDIUM, HIGH, ULTRA) and Camera Mode. Sliders for Steering Sensitivity."
+    },
+    {
+      "name": "In-Game HUD",
+      "purpose": "Combat overlay during active gameplay.",
+      "states": {
+        "loading": "Match starting countdown",
+        "empty": "N/A",
+        "error": "Connection/pause overlay"
+      },
+      "layout": "Landscape layout. Left Safe Area: Invisible steering joystick overlay. Right Safe Area: Aim joystick and action buttons (Throttle, Brake, Nitro, Handbrake, Fire). Top Left: Minimap & Zone Timer. Top Right: Kills & Remaining Enemies. Bottom Center: HP, Armor, Ammo, Current Weapon, Speed, Nitro gauges. Center: Crosshair & Damage/Elimination indicators."
+    },
+    {
+      "name": "Result Screen",
+      "purpose": "Match conclusion showcasing stats and rewards.",
+      "states": {
+        "loading": "Tallying score animation",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Centered brutalist modal over blurred 3D scene. Large victory/elimination text in brandPrimary/error colors. Grid layout for stats (Placement, Kills, Scrap Earned) using Rajdhani mono-like typography for numbers. Primary CTA to return to Garage."
+    }
+  ],
+  "images": {
+    "main_menu_bg_fallback": {
+      "url": "https://images.unsplash.com/photo-1669903659826-464314558cde?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxwb3N0JTIwYXBvY2FseXB0aWMlMjBydXN0eSUyMG11c2NsZSUyMGNhciUyMGRlc2VydHxlbnwwfHx8fDE3OTAzNjM5NzR8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Post apocalyptic rusty muscle car in desert"
+    },
+    "industrial_texture": {
+      "url": "https://images.unsplash.com/photo-1578922427288-a47338083a57?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwxfHxkYXJrJTIwaW5kdXN0cmlhbCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwwfHx8fDE3OTAzNjM5NzN8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Dark industrial metal texture"
+    },
+    "arena_preview": {
+      "url": "https://images.unsplash.com/photo-1548225925-68c91c029aab?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwzfHxwb3N0JTIwYXBvY2FseXB0aWMlMjBydXN0eSUyMG11c2NsZSUyMGNhciUyMGRlc2VydHxlbnwwfHx8fDE3OTAzNjM5NzR8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Rusty car battle arena"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Ensure the app is heavily optimized for Landscape orientation. Configure Expo app.json orientation to 'landscape'.",
+    "In-game HUD overlay MUST use absolutely positioned views over the Expo GL canvas. Handle the safe area insets properly on the left and right sides so notches don't obscure UI.",
+    "Touch Controls: Implement transparent/translucent interactive areas for joysticks (react-native-gesture-handler). The buttons for Throttle, Brake, Nitro, Handbrake, and Fire should be grouped ergonomically on the right side.",
+    "Use 'Barlow Condensed' for major headings, alerts, and victory texts, and 'Rajdhani' for UI numbers like speed, scrap, and ammo.",
+    "Do NOT use glassmorphism or blur effects. These are extremely taxing on GPU performance when layered over a 3D WebGL scene on mobile. Use solid dark colors (rgba with opacity) instead.",
+    "HP, Armor, and Nitro bars should have a segmented, industrial, or tactical look, avoiding standard rounded edges. Utilize sharp corners (radius 0 or 2).",
+    "Integrate the 'industrial_texture' subtly as a background layer in menus (with dark overlay scrim) to reinforce the post-apocalyptic feel without distracting from text.",
+    "Never use blue, indigo, or purple. Use Rust/Orange (brandPrimary) and Red (error) as the only vibrant accents against the dark grey (surface) backdrop."
+  ]
+}

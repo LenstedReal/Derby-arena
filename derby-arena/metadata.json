@@ -1,0 +1,6 @@
+{
+  "name": "Derby Arena",
+  "description": "A post-apocalyptic 3D demolition derby game with realistic vehicle collision physics, drift dynamics, destructible barriers, customizable rusty muscle car with roof gun, multiple 3D camera angles, dystopian fog, and a cheering crowd of robots.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
