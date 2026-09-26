@@ -122,7 +122,7 @@ object IblGenerator {
                     }
                 }
                 buffer.flip()
-                texture.setImage(engine, level, Texture.PixelBufferDescriptor(buffer, Texture.Format.RGBA, Texture.Type.UBYTE), offsets)
+                texture.setImage(engine, level, Texture.PixelBufferDescriptor(buffer, Texture.Format.RGBA, Texture.Type.UBYTE))
                 size = max(1, size / 2)
             }
             // pre-scale SH by A_l * K_lm^2 (Filament's shader applies the raw polynomial only)

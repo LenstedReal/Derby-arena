@@ -241,14 +241,11 @@ class FilamentWorld(private val context: Context) {
         try {
             v.dynamicResolutionOptions = View.DynamicResolutionOptions().apply {
                 enabled = budget.resolutionScale < 1f
-                minScale = floatArrayOf(budget.resolutionScale, budget.resolutionScale)
-                maxScale = floatArrayOf(1f, 1f)
+                minScale = budget.resolutionScale
+                maxScale = 1f
                 quality = View.QualityLevel.MEDIUM
             }
         } catch (t: Throwable) { Log.w(TAG, "DynRes: ${t.message}") }
-        try {
-            v.shadowType = if (budget.softShadows) View.ShadowType.PCSS else View.ShadowType.PCF
-        } catch (t: Throwable) { Log.w(TAG, "ShadowType: ${t.message}") }
     }
 
     private fun setupLighting() {
